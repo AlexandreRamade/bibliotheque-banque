@@ -3,12 +3,19 @@ package dev.banque.model;
 import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="BANQUE")
 public class Banque {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
 	@Column(name="NOM")
@@ -22,8 +29,7 @@ public class Banque {
 	}
 
 	
-	public Banque(int id, String nom) {
-		this.id = id;
+	public Banque(String nom) {
 		this.nom = nom;
 	}
 

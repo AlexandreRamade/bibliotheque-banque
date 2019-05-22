@@ -18,6 +18,10 @@ http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
 		<class>dev.banque.model.Client</class>
 		<class>dev.banque.model.Compte</class>
 		<class>dev.banque.model.Operation</class>
+		<class>dev.banque.model.LivretA</class>
+		<class>dev.banque.model.AssuranceVie</class>
+		<class>dev.banque.model.Virement</class>
+		
 		
 		<properties>
 			<!-- désactive l'autodétection des classes @Entity et ne s'occupe que de celles indiquées dans <class>... -->
@@ -27,7 +31,7 @@ http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
 			<property name="hibernate.hbm2ddL.auto" value="update" />
 			
 			<!-- Drop and create à chaque redémarage -->
-			<property name="javax.persistence.shema-generation.database.action" value="drop-and-create"/>
+			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
 			
 			<!-- Affichage des requetes SQL -->
 			<property name="hibernate.show_sql" value="true" />

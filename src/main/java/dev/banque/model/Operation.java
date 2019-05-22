@@ -3,34 +3,43 @@ package dev.banque.model;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name="OPERATION")
 public class Operation {
 	@Id
-	private int id;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	protected int id;
 	
 	@Column(name="DATE")
-	private LocalDateTime date;
+	protected LocalDateTime date;
 	
 	@Column(name="MONTANT")
-	private double montant;
+	protected double montant;
 	
 	@Column(name="MOTIF")
-	private String motif;
+	protected String motif;
 
 	@ManyToOne
 	@JoinColumn(name="ID_COMPTE")
-	private Compte compte;
+	protected Compte compte;
 	
 	
 	public Operation() {
 	}
 	
 
-	public Operation(int id, LocalDateTime date, double montant, String motif) {
-		this.id = id;
+	public Operation(LocalDateTime date, double montant, String motif) {
 		this.date = date;
 		this.montant = montant;
 		this.motif = motif;

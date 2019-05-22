@@ -5,9 +5,7 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 public class Adresse {
-	
-	private int id;
-	
+		
 	@Column(name="NUMERO")
 	private int numero;
 	
@@ -24,8 +22,7 @@ public class Adresse {
 	}
 	
 	
-	public Adresse(int id, int numero, String rue, int codePostal, String ville) {
-		this.id = id;
+	public Adresse(int numero, String rue, int codePostal, String ville) {
 		this.numero = numero;
 		this.rue = rue;
 		this.codePostal = codePostal;
@@ -38,16 +35,6 @@ public class Adresse {
 		return numero + " " + rue + " " + codePostal + " " + ville.toUpperCase();
 	}
 	
-	
-	
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public int getNumero() {
 		return numero;
 	}

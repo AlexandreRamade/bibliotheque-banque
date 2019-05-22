@@ -3,23 +3,33 @@ package dev.banque.model;
 import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name="COMPTE")
 public class Compte {
 	
 	@Id
-	private int id;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	protected int id;
 	
 	@Column(name="NUMERO")
-	private String numero;
+	protected String numero;
 	
 	@Column(name="SOLDE")
-	private double solde;
+	protected double solde;
 
-	@ManyToMany(mappedBy="compte")
-	public Client client;
+	@ManyToMany(mappedBy="comptes")
+	public Set<Client> clients;
 	
 	@OneToMany(mappedBy="compte")
 	public Set<Operation> operations;
@@ -28,8 +38,7 @@ public class Compte {
 	}
 	
 	
-	public Compte(int id, String numero, double solde) {
-		this.id = id;
+	public Compte(String numero, double solde) {
 		this.numero = numero;
 		this.solde = solde;
 	}
@@ -65,14 +74,13 @@ public class Compte {
 		this.solde = solde;
 	}
 
-
-	public Client getClient() {
-		return client;
+	public Set<Client> getClients() {
+		return clients;
 	}
 
 
-	public void setClient(Client client) {
-		this.client = client;
+	public void setClients(Set<Client> clients) {
+		this.clients = clients;
 	}
 
 
